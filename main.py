@@ -1,13 +1,12 @@
 from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
 from sqlalchemy import create_engine
+from app.core.database import engine
 from fastapi.exceptions import RequestValidationError
 
 from app.routes.user_router import user_routes
 
 app = FastAPI()
-
-engine = create_engine("sqlite:///database.db")
 
 app.include_router(user_routes)
 
