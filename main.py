@@ -1,14 +1,15 @@
 from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
-from sqlalchemy import create_engine
-from app.core.database import engine
 from fastapi.exceptions import RequestValidationError
 
 from app.routes.user_router import user_routes
+from app.routes.account_router import account_routes
 
 app = FastAPI()
 
+# Routes
 app.include_router(user_routes)
+app.include_router(account_routes)
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exception: RequestValidationError):
