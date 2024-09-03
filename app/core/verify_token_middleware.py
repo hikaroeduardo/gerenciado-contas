@@ -4,9 +4,9 @@ from jwt import PyJWTError
 from fastapi import Request, status, HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
-security = HTTPBearer()
+bearer_token = HTTPBearer()
 
-async def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
+async def verify_token(credentials: HTTPAuthorizationCredentials = Depends(bearer_token)):
     try:
         token = credentials.credentials
         SECRET_KEY = os.getenv("SECRET_KEY")

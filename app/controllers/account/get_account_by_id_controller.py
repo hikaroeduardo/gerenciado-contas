@@ -3,8 +3,9 @@ from fastapi.responses import JSONResponse
 from app.core.verify_token_middleware import verify_token
 from app.services.account.get_account_by_id_service import get
 from app.errors.account_not_found_error import AccountNotFoundError
+from app.models.schemas.account_schemas import ResponseDataAccountsById
 
-async def get_account(account_id: str, id_user: str = Depends(verify_token)):
+async def get_account(account_id: str, id_user: str = Depends(verify_token)) -> ResponseDataAccountsById:
     try:
         account = await get(account_id, id_user)
 

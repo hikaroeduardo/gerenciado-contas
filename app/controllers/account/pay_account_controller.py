@@ -2,10 +2,11 @@ from fastapi import Depends, status
 from fastapi.responses import JSONResponse
 from app.errors.paid_account_error import PaidAccountError
 from app.errors.account_not_found_error import AccountNotFoundError
+from app.models.schemas.account_schemas import ResponseAccountDefault
 from app.services.account.pay_account_service import pay
 from app.core.verify_token_middleware import verify_token
 
-async def pay_account(account_id: str, id_user: str = Depends(verify_token)):
+async def pay_account(account_id: str, id_user: str = Depends(verify_token)) -> ResponseAccountDefault:
     try:
         await pay(account_id, id_user)
 

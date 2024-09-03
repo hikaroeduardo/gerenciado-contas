@@ -2,8 +2,9 @@ from fastapi import Depends, status
 from fastapi.responses import JSONResponse
 from app.core.verify_token_middleware import verify_token
 from app.services.account.get_all_accounts_service import get
+from app.models.schemas.account_schemas import ResponseDataAccounts
 
-async def get_accounts(id_user: str = Depends(verify_token)):
+async def get_accounts(id_user: str = Depends(verify_token)) -> ResponseDataAccounts:
     try:
         accounts = await get(id_user)
 

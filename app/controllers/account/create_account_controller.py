@@ -4,9 +4,9 @@ from app.errors.global_error import GlobalError
 from app.core.verify_token_middleware import verify_token
 from app.models.schemas.account_schemas import NewAccount
 from app.services.account.create_account_service import create
-from app.models.schemas.account_schemas import ResponseCreateAccount
+from app.models.schemas.account_schemas import ResponseAccountDefault
 
-async def create_accounte(data: NewAccount, id_user: str = Depends(verify_token)) -> ResponseCreateAccount:
+async def create_accounte(data: NewAccount, id_user: str = Depends(verify_token)) -> ResponseAccountDefault:
     try:
         await create(data=data, id_user=id_user)
 
