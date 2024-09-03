@@ -8,3 +8,7 @@ class NewUser(BaseModel):
 class LoginUser(BaseModel):
     email: str
     password: str
+
+class ResponseProfileUser(BaseModel):
+    name: str
+    email: str

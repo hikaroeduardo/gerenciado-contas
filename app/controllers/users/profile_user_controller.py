@@ -2,8 +2,9 @@ from fastapi import Depends, status
 from fastapi.responses import JSONResponse
 from app.core.verify_token_middleware import verify_token
 from app.services.users.profile_user_service import get_profile
+from app.models.schemas.user_schemas import ResponseProfileUser
 
-async def profile_user_controller(id_user: str = Depends(verify_token)):
+async def profile_user_controller(id_user: str = Depends(verify_token)) -> ResponseProfileUser:
     try:
         user = await get_profile(id_user=id_user)
 

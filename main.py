@@ -5,7 +5,9 @@ from fastapi.exceptions import RequestValidationError
 from app.routes.user_router import user_routes
 from app.routes.account_router import account_routes
 
-app = FastAPI()
+app = FastAPI(
+    title="Gerenciador de contas pessoais"
+)
 
 # Routes
 app.include_router(user_routes)
@@ -26,6 +28,7 @@ async def validation_exception_handler(request: Request, exception: RequestValid
                 content={ "Message_error": "Dados inválidos, verificar tipos de dados." },
                 status_code=status.HTTP_400_BAD_REQUEST
             )
+
 
 if __name__ == "__main__":
     import uvicorn
